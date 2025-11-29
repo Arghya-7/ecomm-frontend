@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
 import  styles from "./header.module.css";
 import {Link} from "react-router-dom";
+import Clock from "../Clock/Clock";
 function Header() {
     const [open, setOpen] = useState(false);
 
@@ -8,7 +9,9 @@ function Header() {
         <header className={styles.navbar}>
 
             <div className={styles.logo}>Ecommerce application</div>
-
+            <center>
+                <Clock />
+            </center>
             {/* DESKTOP INLINE LINKS */}
             <ul className={styles.links}>
                 <Link to="/home" className={styles.linksItem}>Home</Link>
