@@ -1,32 +1,46 @@
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 
-import {useParams } from "react-router-dom";
-import {useState} from "react";
+import {Link, useNavigate, useParams} from "react-router-dom";
+import  {useEffect, useState} from "react";
 import styles from "./Checkout.module.css";
-import image from "../../asset/product.png";
 
-export default function Checkout(props) {
-    const {productId} = useParams();
-    const getProductDetails = () => {
-        const product = {
-            id: productId,
-            name: "Wireless Headphones",
-            price: 2999,
-            image: image,
-            quantity: 1,
-            shipping: 49,
-        }
-        return product;
-    }
-    const [product,setProduct] = useState(getProductDetails());
+export default function Checkout() {
+    const { productId } = useParams();
+    const navigate = useNavigate();
+    const [product, setProduct] = useState({
+                                                            id:null,
+                                                            name: "Shoe",
+                                                            description: "Shoe",
+                                                            image: "img.png",
+                                                            price: 500,
+                                                            quantity: 1,
+                                                            shipping : 30
+                                                        });
 
     const handleProductQuantityChange = (e) => {
-        setProduct(product => {
-            const updatedProduct = {...product};
-            updatedProduct.quantity = e.target.value;
-            return updatedProduct;
-        })
+        setProduct((prev) => ({
+            ...prev,
+            quantity: Number(e.target.value)
+        }));
+    };
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/${productId}`);
+            const data = await res.json();
+            setProduct({...data, quantity : 1, shipping : 30});
+        };
+
+        fetchData();
+    }, [productId]);
+
+    const handlePayment = () =>{
+        navigate("/payment", { state : { productItems : [product]}});
+    }
+
+    const handleCheckout = () => {
+        // navigate("/checkout");
     }
 
     return (
@@ -39,12 +53,13 @@ export default function Checkout(props) {
                 {/* Product Summary */}
                 <div className={styles.card}>
                     <div className={styles.productRow}>
-                        <img src={product.image} alt={product.name} className={styles.image} />
+                        <img src={`${process.env.REACT_APP_BACKEND_URL}/images/${product.image}`} alt={product.name} className={styles.image} />
 
 
                         <div className={styles.productInfo}>
-                            <h2 className={styles.productName}>{product.name}</h2>
-                            <p className={styles.price}>Price: ₹{product.price}</p>
+                            <h2 className={styles.productName}>Product Name : {product.name}</h2>
+                            <h2 className={styles.productDescription}>Description : {product.description}</h2>
+                            <p className={styles.price}>Price: {product.currency} {product.price}</p>
 
 
                             <div className={styles.quantityRow}>
@@ -62,13 +77,13 @@ export default function Checkout(props) {
                 </div>
 
 
-                {/* Billing Summary */}
+                 Billing Summary
                 <div className={styles.card}>
                     <h3 className={styles.sectionHeader}>Billing Summary</h3>
 
 
-                    <div className={styles.row}><span>Item Total</span><span>₹{product.price * product.quantity}</span></div>
-                    <div className={styles.row}><span>Shipping Charges</span><span>₹{product.shipping}</span></div>
+                    <div className={styles.row}><span>Item Total</span><span>{product.currency} {product.price * product.quantity}</span></div>
+                    <div className={styles.row}><span>Shipping Charges</span><span>{product.currency} {product.shipping}</span></div>
 
 
                     <hr className={styles.divider} />
@@ -76,13 +91,14 @@ export default function Checkout(props) {
 
                     <div className={styles.totalRow}>
                         <span>Total Amount</span>
-                        <span>₹{parseInt(product.price * product.quantity + product.shipping)}</span>
+                        <span>{product.currency + " " +parseInt(product.price * product.quantity + product.shipping)}</span>
                     </div>
                 </div>
 
 
                 {/* Payment */}
-                <button className={styles.payBtn}>Proceed to Pay</button>
+                <button className={styles.checkoutButton} >Add to Cart</button>
+                <button className={styles.payBtn} onClick={handlePayment}>Pay now</button>
             </div>
             <Footer />
         </>

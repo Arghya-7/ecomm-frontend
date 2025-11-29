@@ -1,12 +1,11 @@
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
+import ProductsGrid from "../../components/Cards/ProductGrid";
 
 export default function Home(){
     return (<>
             <Header />
-            <center>
-                <h1>Home page</h1>
-            </center>
+            <ProductsGrid />
             <Footer />
         </>)
 }

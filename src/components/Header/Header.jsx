@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import  styles from "./header.module.css";
 import {Link} from "react-router-dom";
 function Header() {
@@ -18,9 +18,9 @@ function Header() {
 
             {/* MOBILE SLIDE MENU */}
             <div className={`${styles.mobileMenu} ${open ? styles.open : ""}`}>
-                <a href="#" onClick={() => setOpen(false)}>Home</a>
-                <a href="#" onClick={() => setOpen(false)}>Features</a>
-                <a href="#" onClick={() => setOpen(false)}>About</a>
+                <Link to="/home" className={styles.linksItem} onClick={() => setOpen(false)}>Home</Link>
+                <Link to="/features" className={styles.linksItem} onClick={() => setOpen(false)}>Features</Link>
+                <Link to="/about" className={styles.linksItem} onClick={() => setOpen(false)}>About</Link>
             </div>
 
             {/* HAMBURGER BUTTON */}
