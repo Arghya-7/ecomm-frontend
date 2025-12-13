@@ -1,7 +1,8 @@
-import {useEffect, useState} from "react";
+import { useState} from "react";
 import  styles from "./header.module.css";
 import {Link} from "react-router-dom";
 import Clock from "../Clock/Clock";
+import logout from "../Logout/logout";
 function Header() {
     const [open, setOpen] = useState(false);
 
@@ -14,6 +15,7 @@ function Header() {
             </center>
             {/* DESKTOP INLINE LINKS */}
             <ul className={styles.links}>
+                <Link onClick={logout} to={"/login"}>Logout</Link>
                 <Link to="/home" className={styles.linksItem}>Home</Link>
                 <Link to="/features" className={styles.linksItem}>Features</Link>
                 <Link to="/about" className={styles.linksItem}>About</Link>

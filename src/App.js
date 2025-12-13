@@ -8,17 +8,22 @@ import Error from "./pages/Error/Error";
 import Payment from "./pages/Payment/Payment";
 import Checkout from "./pages/Checkout/Checkout";
 import PaymentValidate from "./pages/Payment/PaymentValidation/PaymentValidate";
+import Login from "./pages/Login/Login";
+import Registration from "./pages/Registration/Registration";
+import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 function App() {
   return (
       <BrowserRouter>
           <Routes>
-              <Route path="/" element={<DashBoard />} />
-              <Route path="/home" element={<Home />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/features" element={<Features />} />
-              <Route path="/checkout/:productId" element={<Checkout />} />
-              <Route path="/payment/validate" element={<PaymentValidate />} />
-              <Route path="/payment" element={ <Payment />} />
+              <Route path="/" element={<PrivateRoute><DashBoard /></PrivateRoute>} />
+              <Route path="/home" element={<PrivateRoute><Home /></PrivateRoute>} />
+              <Route path="/about" element={<PrivateRoute><About /></PrivateRoute>} />
+              <Route path="/features" element={<PrivateRoute><Features /></PrivateRoute>} />
+              <Route path="/checkout/:productId" element={<PrivateRoute><Checkout /></PrivateRoute>} />
+              <Route path="/payment/validate" element={<PrivateRoute><PaymentValidate /></PrivateRoute>} />
+              <Route path="/payment" element={<PrivateRoute><Payment /></PrivateRoute>} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Registration />} />
               <Route path="*" element={<Error />} />
           </Routes>
       </BrowserRouter>

@@ -3,7 +3,7 @@ import {useEffect, useState} from "react";
 export default function Clock() {
     const [time, setTime] = useState(new Date());
     const calculateHour = (hour) => {
-        if(hour == 12) return 12;
+        if(hour === 12) return 12;
         else if(hour >= 12) return (hour % 12).toString().padStart(2, '0');
         else return hour.toString().padStart(2, '0');
     }

@@ -79,3 +79,7 @@
         display: flex;
     }
 }
+
+ul {
+    margin-right: 60px;
+}

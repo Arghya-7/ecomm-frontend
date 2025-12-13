@@ -3,6 +3,7 @@ import {useEffect, useState} from "react";
 import Header from "../../../components/Header/Header";
 import Footer from "../../../components/Footer/Footer";
 import style from "./PaymentValidation.module.css";
+import api from "../../../config/AuthHeader"
 
 export default function PaymentValidate() {
     const { search } = useLocation();
@@ -19,14 +20,10 @@ export default function PaymentValidate() {
         console.log("Payment Redirected Locally!");
         console.log("Order ID:", orderId);
         const updateStatus = async () => {
-            const data = await fetch(`${process.env.REACT_APP_BACKEND_URL}/check-order-status`,{
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body : JSON.stringify({
-                    orderId: orderId
-                })
-            });
-            const dataJSON = await data.json();
+            const data = await api.post(`${process.env.REACT_APP_BACKEND_URL}/check-order-status`,{
+                        orderId: orderId
+                    });
+            const dataJSON = data.data;
             console.log(dataJSON.order_status);
             if(dataJSON.order_status === "PAID") {
                 setState("success");

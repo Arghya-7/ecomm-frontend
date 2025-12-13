@@ -3,7 +3,9 @@ import Footer from "../../components/Footer/Footer";
 import {useLocation, useNavigate} from 'react-router-dom';
 import {useEffect, useRef, useState} from "react";
 import styles from "./Payment.module.css";
+import api from "../../config/AuthHeader"
 import CashfreePaymentModule from "./CashfreePaymentModule";
+import ProductImage from "../../components/ProductImage/ProductImage";
 
 export default function Payment() {
     const navigate = useNavigate();
@@ -36,18 +38,14 @@ export default function Payment() {
         }
         if(!sessionStatus.current){
             const payment = async () => {
-                const paymentRequest = await fetch(`${process.env.REACT_APP_BACKEND_URL}/create-order-cashfree`, {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body : JSON.stringify({
-                        amount: calculateCost(productItems),
-                        currency: "INR",
-                        mail: getUserDetails().email,
-                        contactNumber: getUserDetails().contactNumber
-                    })
+                const paymentRequest = await api.post(`${process.env.REACT_APP_BACKEND_URL}/create-order-cashfree`, {
+                    amount: calculateCost(productItems),
+                    currency: "INR",
+                    mail: getUserDetails().email,
+                    contactNumber: getUserDetails().contactNumber
                 });
                 console.log(paymentRequest);
-                setPaymentData(await paymentRequest.json());
+                setPaymentData( paymentRequest.data);
 
             }
             payment();
@@ -60,7 +58,9 @@ export default function Payment() {
         <div className={styles.productGrid}>
             {productItems.map((item) => (
                 <div className={styles.productCard} key={item.id}>
-                    <img src={`${process.env.REACT_APP_BACKEND_URL}/images/${item.image}`} alt={item.name} className="product-image" />
+                    <span className={styles.productImage}>
+                        <ProductImage image={item.image}/>
+                    </span>
                     <h3 className={styles.productTitle}>Item name : {item.name}</h3>
                     <p className={styles.productPrice}>Item price : {item.price}</p>
                     <p className={styles.productPrice}>Item quantity : {item.quantity}</p>

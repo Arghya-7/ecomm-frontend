@@ -1,9 +1,11 @@
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 
-import {Link, useNavigate, useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import  {useEffect, useState} from "react";
 import styles from "./Checkout.module.css";
+import api from "../../config/AuthHeader"
+import ProductImage from "../../components/ProductImage/ProductImage";
 
 export default function Checkout() {
     const { productId } = useParams();
@@ -27,8 +29,8 @@ export default function Checkout() {
 
     useEffect(() => {
         const fetchData = async () => {
-            const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/${productId}`);
-            const data = await res.json();
+            const res = await api.get(`${process.env.REACT_APP_BACKEND_URL}/${productId}`);
+            const data =  res.data;
             setProduct({...data, quantity : 1, shipping : 30});
         };
 
@@ -53,9 +55,9 @@ export default function Checkout() {
                 {/* Product Summary */}
                 <div className={styles.card}>
                     <div className={styles.productRow}>
-                        <img src={`${process.env.REACT_APP_BACKEND_URL}/images/${product.image}`} alt={product.name} className={styles.image} />
-
-
+                        <div className={styles.image}>
+                            <ProductImage image={product.image}/>
+                        </div>
                         <div className={styles.productInfo}>
                             <h2 className={styles.productName}>Product Name : {product.name}</h2>
                             <h2 className={styles.productDescription}>Description : {product.description}</h2>

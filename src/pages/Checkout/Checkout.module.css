@@ -30,6 +30,7 @@
     height: 160px;
     object-fit: cover;
     border-radius: 12px;
+    margin-right: 40px;
 }
 
 .productInfo {

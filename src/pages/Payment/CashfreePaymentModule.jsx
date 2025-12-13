@@ -1,7 +1,4 @@
-import {useNavigate, useNavigation} from "react-router-dom";
-
 export default function CashfreePaymentModule({data}){
-    const navigate = useNavigate();
     const payNow = async () => {
         console.log(data);
         if (!window.Cashfree) {
@@ -11,7 +8,7 @@ export default function CashfreePaymentModule({data}){
 
         const cashfree = new window.Cashfree({ mode: "sandbox" });
 
-        const result = await cashfree.checkout({
+        cashfree.checkout({
             paymentSessionId: data.payment_session_id,
             returnUrl: `http://localhost:3000/payment/validate?order_id=${data.order_id}`
         });
