@@ -39,7 +39,7 @@
     margin-bottom: 1rem;
 }
 
-.button {
+button {
     width: 100%;
     padding: 0.6rem 1rem;
     background: #0ea5e9;
@@ -50,10 +50,18 @@
     font-size: 0.95rem;
     cursor: pointer;
     transition: background 0.25s ease;
+    margin: 3px;
 }
 
-.button:hover {
+button:hover {
     background: #0284c7;
+}
+
+.cartButton {
+    background-color: green;
+}
+.cartButton:hover {
+    background-color: greenyellow;
 }
 
 /* Grid layout for product listing */

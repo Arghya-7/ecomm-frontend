@@ -1,4 +1,6 @@
 import { useState, useEffect} from "react";
+import api from "../../config/AuthHeader"
+import GetUser from "../GetUser/GetUser";
 export default function Greeting() {
     const [date, setDate] = useState(new Date());
     useEffect(() => {
@@ -17,7 +19,7 @@ export default function Greeting() {
 
     return (<>
         <center>
-            <h1>{getMessage(date.getHours())} Shoppers</h1>
+            <h1>{getMessage(date.getHours())} <GetUser />!</h1>
             <h1>Thank you for visiting our site</h1>
         </center>
     </>)

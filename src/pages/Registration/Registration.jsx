@@ -11,12 +11,18 @@ export default function Registration() {
     const [address, setAddress] = useState("");
     const [status, setStatus] = useState("");
     const navigate = useNavigate();
-
+    const [isPasswordSame, setIsPasswordSame] = useState(true);
     useEffect(() => {
         if(localStorage.getItem("token")) {
             navigate("/");
         }
     }, []);
+
+    const handleConfirmPasswordChange = () => {
+        if(confirmPassword !== password) {
+            return "Passwords are not matched";
+        }
+    }
 
     const handleRegistration = async (e) => {
         e.preventDefault();
@@ -82,12 +88,11 @@ export default function Registration() {
 
                 <input
                     type="password"
-                    placeholder="Enter password"
+                    placeholder="Enter your password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     className={styles.input}
                 />
-
                 <input
                     type="password"
                     placeholder="Confirm password"
@@ -95,6 +100,7 @@ export default function Registration() {
                     onChange={(e) => setConfirmPassword(e.target.value)}
                     className={styles.input}
                 />
+                <p className={styles.redColor}>{handleConfirmPasswordChange()}</p>
 
                 <button type="submit" className={styles.button} onClick={handleRegistration}>
                     Register
