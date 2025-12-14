@@ -49,3 +49,20 @@
 .redColor {
     color: red;
 }
+
+.otpInput {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 12px;
+    width: 100%;
+}
+
+.centeredInput{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.success {
+    color: green;
+}

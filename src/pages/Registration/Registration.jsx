@@ -26,23 +26,24 @@ export default function Registration() {
 
     const handleRegistration = async (e) => {
         e.preventDefault();
-        const data = await fetch(process.env.REACT_APP_BACKEND_URL+"/users/register", {
-            method: "POST",
+        const user = {
+            id: email.substring(0, email.indexOf("@")),
+            email: email,
+            password: password,
+            name: name,
+            phone: phone,
+            address: address
+        };
+        const data = await fetch(process.env.REACT_APP_BACKEND_URL+"/auth/registration/isAlreadyUser/"+email, {
+            method: "GET",
             headers: {
                 "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                id: email.substring(0, email.indexOf("@")),
-                email: email,
-                password: password,
-                name: name,
-                phone: phone,
-                address: address
-            })
+            }
         });
         console.log(data);
         if(data.status === 200){
-            setStatus("Registration Successful!");
+            setStatus("");
+            navigate("/register/verify", { state : {user : user}});
         } else {
             const response = await data.json();
             console.log(response);

@@ -11,9 +11,19 @@ import PaymentValidate from "./pages/Payment/PaymentValidation/PaymentValidate";
 import Login from "./pages/Login/Login";
 import Registration from "./pages/Registration/Registration";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
+import OTPVerification from "./pages/Registration/OTPVerification";
+import {ToastContainer} from "react-toastify";
 function App() {
   return (
       <BrowserRouter>
+          <ToastContainer
+              position="top-right"
+              autoClose={3000}
+              hideProgressBar={false}
+              newestOnTop
+              closeOnClick
+              pauseOnHover
+          />
           <Routes>
               <Route path="/" element={<PrivateRoute><DashBoard /></PrivateRoute>} />
               <Route path="/home" element={<PrivateRoute><Home /></PrivateRoute>} />
@@ -24,6 +34,7 @@ function App() {
               <Route path="/payment" element={<PrivateRoute><Payment /></PrivateRoute>} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Registration />} />
+              <Route path="/register/verify" element={<OTPVerification />} />
               <Route path="*" element={<Error />} />
           </Routes>
       </BrowserRouter>
