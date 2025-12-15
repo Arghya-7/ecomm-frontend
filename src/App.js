@@ -13,6 +13,8 @@ import Registration from "./pages/Registration/Registration";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import OTPVerification from "./pages/Registration/OTPVerification";
 import {ToastContainer} from "react-toastify";
+import Logout from "./pages/Logout/Logout";
+import Cart from "./pages/Cart/Cart";
 function App() {
   return (
       <BrowserRouter>
@@ -33,6 +35,8 @@ function App() {
               <Route path="/payment/validate" element={<PrivateRoute><PaymentValidate /></PrivateRoute>} />
               <Route path="/payment" element={<PrivateRoute><Payment /></PrivateRoute>} />
               <Route path="/login" element={<Login />} />
+              <Route path="cart" element={<Cart/>} />
+              <Route path="/logout" element={<Logout />} />
               <Route path="/register" element={<Registration />} />
               <Route path="/register/verify" element={<OTPVerification />} />
               <Route path="*" element={<Error />} />

@@ -12,7 +12,7 @@ export default function GetUser(){
                     setUser(userLocalstorage);
                 } else {
                     const userData = await api.get("/users/getUserDetails");
-                    const user = userData.data;
+                    const user = userData.data || "Shoppers";
                     setUser(user);
                 }
             }
