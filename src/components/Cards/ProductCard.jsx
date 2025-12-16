@@ -21,9 +21,11 @@ export default function ProductCard({  product }) {
 
     return (
         <div className={styles.card}>
-            <div className={styles.image}>
-                <ProductImage image={product.image}/>
-            </div>
+            <center>
+                <div className={styles.image}>
+                    <ProductImage image={product.image}/>
+                </div>
+            </center>
             <div className={styles.content}>
                 <div className={styles.name}>{product.name}</div>
                 <div className={styles.price}>{product.currency} {product.price}</div>
