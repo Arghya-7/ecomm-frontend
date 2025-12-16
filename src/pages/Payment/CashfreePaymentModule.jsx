@@ -1,4 +1,7 @@
+import {useEffect, useRef} from "react";
+
 export default function CashfreePaymentModule({data}){
+    const loaded = useRef(false);
     const payNow = async () => {
         console.log(data);
         if (!window.Cashfree) {
@@ -14,7 +17,12 @@ export default function CashfreePaymentModule({data}){
         });
     };
 
-    return (<>
-        <span onClick={payNow}>Pay now</span>
-    </>);
+    useEffect(() => {
+        if(!loaded.current){
+            loaded.current = true;
+            payNow();
+        }
+    })
+
+    return (<></>);
 }

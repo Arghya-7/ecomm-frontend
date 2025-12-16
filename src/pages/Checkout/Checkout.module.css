@@ -1,130 +1,122 @@
-.container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
+/* Page wrapper */
+.checkoutContainer {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 24px;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 24px;
+    font-family: "Segoe UI", sans-serif;
 }
 
-.title {
-    text-align: center;
-    font-size: 32px;
-    font-weight: bold;
-    margin-bottom: 30px;
-}
-
-.card {
+/* Left section */
+.checkoutLeft {
     background: #ffffff;
-    padding: 20px;
-    border-radius: 16px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    margin-bottom: 25px;
+    border-radius: 8px;
+    padding: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
-.productRow {
-    display: flex;
-    gap: 20px;
-    align-items: center;
-}
-
-.image {
-    width: 160px;
-    height: 160px;
-    object-fit: cover;
-    border-radius: 12px;
-    margin-right: 40px;
-}
-
-.productInfo {
-    flex: 1;
-}
-
-.productName {
-    font-size: 24px;
-    font-weight: 600;
-    margin-bottom: 10px;
-}
-
-.productDescription {
-    font-size: 24px;
-    font-weight: 600;
-    margin-bottom: 10px;
-}
-
-.price {
-    color: #555;
-    margin-bottom: 15px;
-}
-
-.quantityRow {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.qtyLabel {
-    font-weight: 500;
-}
-
-.qtyInput {
-    width: 60px;
-    padding: 6px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-}
-
-.sectionHeader {
+.checkoutLeft h2 {
+    margin-bottom: 16px;
     font-size: 20px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 8px;
+}
+
+/* Payment methods */
+.paymentMethods {
+    margin-top: 16px;
+}
+
+.paymentOption {
+    display: flex;
+    align-items: center;
+    padding: 14px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.paymentOption:hover {
+    border-color: #0a7cff;
+    background-color: #f4f8ff;
+}
+
+.paymentOption input {
+    margin-right: 12px;
+}
+
+/* Right section */
+.checkoutRight {
+    background: #fafafa;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.checkoutRight h3 {
+    font-size: 18px;
+    margin-bottom: 16px;
+}
+
+/* Summary rows */
+.summaryRow {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.total {
+    font-size: 16px;
     font-weight: 600;
-    margin-bottom: 15px;
+    border-top: 1px solid #ddd;
+    padding-top: 12px;
+    margin-top: 12px;
 }
 
-.row {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 8px;
-    color: #555;
-}
-
-.divider {
-    margin: 20px 0;
-}
-
-.totalRow {
-    display: flex;
-    justify-content: space-between;
-    font-size: 22px;
-    font-weight: bold;
-}
-
-.payBtn {
+/* Button */
+.placeOrderBtn {
     width: 100%;
-    background: #059669;
-    color: white;
-    font-size: 18px;
-    padding: 12px;
-    border-radius: 10px;
+    margin-top: 20px;
+    padding: 14px;
+    font-size: 16px;
+    background-color: #0a7cff;
+    color: #ffffff;
     border: none;
+    border-radius: 6px;
     cursor: pointer;
-    transition: 0.3s ease;
-    margin: 2px;
+    transition: background 0.2s ease;
 }
 
-.checkoutButton {
-    width: 100%;
-    background: dodgerblue;
-    color: white;
-    font-size: 18px;
-    padding: 12px;
-    border-radius: 10px;
-    border: none;
-    cursor: pointer;
-    transition: 0.3s ease;
-    margin: 2px;
+.placeOrderBtn:hover {
+    background-color: #055fd1;
 }
 
-.payBtn:hover {
-    background: #047857;
+.placeOrderBtn:disabled {
+    background-color: #aaa;
+    cursor: not-allowed;
 }
 
-.checkoutButton:hover {
-    background: darkblue;
+.orderDetails {
+    display: block;
+
+}
+
+.blocks {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .checkoutContainer {
+        grid-template-columns: 1fr;
+    }
+}
+.paymentColor {
+    background-color:green;
 }

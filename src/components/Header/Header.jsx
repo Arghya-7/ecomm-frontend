@@ -16,16 +16,17 @@ function Header() {
             {/* DESKTOP INLINE LINKS */}
             <ul className={styles.links}>
                 <Link onClick={logout} to={"/login"}>Logout</Link>
+                <Link to="/cart" className={styles.linkItem}>Cart</Link>
                 <Link to="/home" className={styles.linksItem}>Home</Link>
-                <Link to="/features" className={styles.linksItem}>Features</Link>
-                <Link to="/about" className={styles.linksItem}>About</Link>
+                <Link to="/profile" className={styles.linksItem}>View Profile</Link>
+                <Link to="/order" className={styles.linksItem}>Orders</Link>
             </ul>
 
             {/* MOBILE SLIDE MENU */}
             <div className={`${styles.mobileMenu} ${open ? styles.open : ""}`}>
                 <Link to="/home" className={styles.linksItem} onClick={() => setOpen(false)}>Home</Link>
                 <Link to="/features" className={styles.linksItem} onClick={() => setOpen(false)}>Features</Link>
-                <Link to="/about" className={styles.linksItem} onClick={() => setOpen(false)}>About</Link>
+                <Link to="/order" className={styles.linksItem} onClick={() => setOpen(false)}>orders</Link>
             </div>
 
             {/* HAMBURGER BUTTON */}

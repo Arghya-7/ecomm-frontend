@@ -1,0 +1,76 @@
+.page {
+    min-height: 100vh;
+    background: #f5f6fa;
+    padding: 30px;
+}
+
+.card {
+    max-width: 700px;
+    margin: auto;
+    background: white;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+}
+
+.title {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.section {
+    margin-top: 20px;
+}
+
+.subtitle {
+    margin-bottom: 10px;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+}
+
+.total {
+    border-top: 2px solid #eee;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.success {
+    color: #2e7d32;
+    font-weight: 600;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.item img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.itemInfo {
+    flex: 1;
+}
+
+.name {
+    font-weight: 600;
+}
+
+.price {
+    font-weight: 600;
+}
+
+.goToHomeButton {
+    margin: 2em;
+    width: 10em;
+}

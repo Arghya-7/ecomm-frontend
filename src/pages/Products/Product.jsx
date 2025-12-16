@@ -3,11 +3,11 @@ import Footer from "../../components/Footer/Footer";
 
 import {useNavigate, useParams} from "react-router-dom";
 import  {useEffect, useState} from "react";
-import styles from "./Checkout.module.css";
+import styles from "./Product.module.css";
 import api from "../../config/AuthHeader"
 import ProductImage from "../../components/ProductImage/ProductImage";
 
-export default function Checkout() {
+export default function Product() {
     const { productId } = useParams();
     const navigate = useNavigate();
     const [product, setProduct] = useState({
@@ -27,6 +27,14 @@ export default function Checkout() {
         }));
     };
 
+    const handleAddToCart = () => {
+        const handleQuantityChange = async (productId, quantity) => {
+            const response = await api.put(`${process.env.REACT_APP_BACKEND_URL}/cart/${productId}/${quantity}`);
+            navigate("/cart");
+        }
+        handleQuantityChange(product.id, product.quantity);
+    }
+
     useEffect(() => {
         const fetchData = async () => {
             const res = await api.get(`${process.env.REACT_APP_BACKEND_URL}/${productId}`);
@@ -37,13 +45,14 @@ export default function Checkout() {
         fetchData();
     }, [productId]);
 
+    const addToCart = async () => {
+        const response = await api.put(`${process.env.REACT_APP_BACKEND_URL}/cart/${productId}/${product.quantity}`);
+    }
     const handlePayment = () =>{
-        navigate("/payment", { state : { productItems : [product]}});
+        addToCart();
+        navigate("/checkout");
     }
 
-    const handleCheckout = () => {
-        // navigate("/checkout");
-    }
 
     return (
         <>
@@ -99,7 +108,7 @@ export default function Checkout() {
 
 
                 {/* Payment */}
-                <button className={styles.checkoutButton} >Add to Cart</button>
+                <button className={styles.checkoutButton} onClick={handleAddToCart}>Add to Cart</button>
                 <button className={styles.payBtn} onClick={handlePayment}>Pay now</button>
             </div>
             <Footer />

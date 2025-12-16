@@ -89,3 +89,9 @@
 .productDetails {
     margin:15px;
 }
+
+.deleteCart {
+    background-color: red;
+    margin-top: 1em;
+    margin-down: 1em
+}

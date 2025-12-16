@@ -1,0 +1,42 @@
+.container {
+    max-width: 450px;
+    margin: 40px auto;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 14px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+}
+
+.title {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 22px;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px dashed #ddd;
+}
+
+.label {
+    font-weight: 500;
+    color: #555;
+}
+
+.value {
+    font-weight: 600;
+    color: #111;
+    word-break: break-all;
+}
+
+.status {
+    margin-top: 16px;
+    text-align: center;
+    font-weight: 600;
+}
+
+.success {
+    color: #2e7d32;
+}

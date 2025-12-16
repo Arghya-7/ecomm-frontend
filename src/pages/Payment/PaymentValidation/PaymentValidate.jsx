@@ -4,12 +4,14 @@ import Header from "../../../components/Header/Header";
 import Footer from "../../../components/Footer/Footer";
 import style from "./PaymentValidation.module.css";
 import api from "../../../config/AuthHeader"
+import OrderConfirmation from "../../../components/OrderConfirmation/OrderConfirmation";
 
 export default function PaymentValidate() {
     const { search } = useLocation();
     const params = new URLSearchParams(search);
     const navigate = useNavigate();
-    const orderId = params.get("order_id");
+    const paymentId = params.get("order_id");
+    const [order, setOrder] = useState("");
     const [state, setState] = useState("Loading")
 
     const isSuccess = (message) => {
@@ -18,30 +20,33 @@ export default function PaymentValidate() {
 
     useEffect(() => {
         console.log("Payment Redirected Locally!");
-        console.log("Order ID:", orderId);
+        console.log("Order ID:", paymentId);
         const updateStatus = async () => {
             const data = await api.post(`${process.env.REACT_APP_BACKEND_URL}/check-order-status`,{
-                        orderId: orderId
+                        orderId: paymentId
                     });
+            const orderResponse = await api.get(`${process.env.REACT_APP_BACKEND_URL}/orders/byPaymentId/${paymentId}`);
+            setOrder(orderResponse.data);
             const dataJSON = data.data;
-            console.log(dataJSON.order_status);
-            if(dataJSON.order_status === "PAID") {
+            console.log(dataJSON);
+            if(dataJSON && dataJSON.order_status === "PAID") {
                 setState("success");
             } else {
-                setState(dataJSON.order_status);
+                setState("Failed");
             }
         }
         updateStatus();
-    }, [orderId]);
+    }, [paymentId]);
 
     return (
         <div>
             <Header />
                 <div className={style.container}>
-                    <h3>Your order id is {orderId}</h3>
-                    <h3>{isSuccess(state) ? <div className={style.success}>Payment successful</div>
-                        : <div className={style.failure}>Payment failed.</div>}</h3>
-                    <button onClick={() => navigate("/")} className={style.blueButton}>Go to home</button>
+                    <OrderConfirmation paymentId={paymentId} orderId={order.id} status={isSuccess(state) ? "Successful" : "Error" } />
+                    <span>
+                        <button onClick={() => navigate("/")} className={style.blueButton}>Go to home</button>
+                        <button className={style.blueButton} onClick={() => navigate("/order/" + order.id)} >View Order</button>
+                    </span>
                 </div>
             <Footer />
         </div>
