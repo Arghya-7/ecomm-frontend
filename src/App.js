@@ -20,6 +20,7 @@ import Checkout from "./pages/Checkout/Checkout.module";
 import UserProfile from "./pages/UserProfile/UserProfile.module";
 import OrderDetails from "./pages/OrderDetails/OrderDetails.module";
 import OrderPage from "./pages/Order/OrderPage";
+import PayButton from "./components/Paybutton/PayButton";
 function App() {
   return (
       <BrowserRouter>
@@ -31,6 +32,7 @@ function App() {
               closeOnClick
               pauseOnHover
           />
+          <PayButton />
           <Routes>
               <Route path="/" element={<PrivateRoute><DashBoard /></PrivateRoute>} />
               <Route path="/home" element={<PrivateRoute><Home /></PrivateRoute>} />

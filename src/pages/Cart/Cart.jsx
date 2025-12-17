@@ -14,7 +14,7 @@ export default function Cart() {
         if (!loaded.current) {
             loaded.current = true;
             const getCart = async () => {
-                const response = await api.post(process.env.REACT_APP_BACKEND_URL + "/cart")
+                const response = await api.post(process.env.REACT_APP_BACKEND_URL + "/cart");
                 setCart(response.data);
                 console.log(response.data);
             }

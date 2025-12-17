@@ -1,0 +1,23 @@
+.pay-button {
+    position: fixed;      /* stays in viewport */
+    bottom: 24px;         /* adjust initial position */
+    right: 24px;
+
+    z-index: 99999;       /* always on top of all elements */
+
+    width: 56px;
+    height: 56px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: midnightblue;
+    color: white;
+    border-radius: 50%;
+
+    cursor: pointer;
+    user-select: none;
+
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
