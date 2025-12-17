@@ -23,6 +23,7 @@
 .label {
     font-weight: 500;
     color: #555;
+    margin-right: 2em;
 }
 
 .value {

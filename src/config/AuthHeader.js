@@ -1,5 +1,7 @@
 import axios from "axios";
 import { toast } from "react-toastify";
+import {useNavigate} from "react-router-dom";
+
 const api = axios.create({
     baseURL: process.env.REACT_APP_BACKEND_URL
 });
@@ -17,16 +19,18 @@ api.interceptors.response.use(
     error => {
         // Backend responded (500, 400, etc.)
         console.log(error)
-        if (error.response) {
+        if(error.response.status === 401 || error.response.status === 403) {
+            localStorage.removeItem("token");
+            sessionStorage.clear();
+            window.location.href = "/login";
+        }else if (error.response) {
             const message =
                 error.response.data?.message ||
                 error.response.data?.error ||
                 "Something went wrong";
 
             toast.error(message);
-        }
-        // No response (server down, CORS, network)
-        else {
+        } else {
             toast.error("Server not reachable");
         }
 

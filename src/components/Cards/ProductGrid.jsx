@@ -5,6 +5,7 @@ import {useEffect, useState} from "react";
 
 export default function ProductsGrid() {
     const [products, setProducts] = useState([]);
+    const [pageNumber, setPageNumber] = useState(0);
     useEffect(()=>{
         const fetchData = async () => {
             console.log(localStorage.getItem("token"));
