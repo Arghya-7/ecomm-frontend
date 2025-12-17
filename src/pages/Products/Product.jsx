@@ -39,7 +39,7 @@ export default function Product() {
         const fetchData = async () => {
             const res = await api.get(`${process.env.REACT_APP_BACKEND_URL}/${productId}`);
             const data =  res.data;
-            setProduct({...data, quantity : 1, shipping : 30});
+            setProduct({...data, quantity : 1, shipping : 0});
         };
 
         fetchData();
@@ -47,10 +47,11 @@ export default function Product() {
 
     const addToCart = async () => {
         const response = await api.put(`${process.env.REACT_APP_BACKEND_URL}/cart/${productId}/${product.quantity}`);
+        return response.data;
     }
     const handlePayment = () =>{
-        addToCart();
-        navigate("/checkout");
+        const data = addToCart();
+        data.then(data => navigate("/checkout"));
     }
 
 

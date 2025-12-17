@@ -52,14 +52,14 @@ export default function OTPVerification() {
                         <h3>Please enter your 6 digit OTP</h3>
                         <OtpTimer timeout={120} email={user.email} />
                         <p>{handleOTPChange()}</p>
+                        <div className={styles.centeredInput}>
+                            <input type="text" className={styles.otpInput} onChange={(e) => setOTP(e.target.value)} placeholder="Enter OTP Password" />
+                        </div>
+                        <button type="submit" className={styles.button} onClick={handleRegister}>
+                            Verify OTP
+                        </button>
                     </div>) : <p className={styles.success}>Registration successful</p>}
             </div>
-            <div className={styles.centeredInput}>
-                <input type="text" className={styles.otpInput} onChange={(e) => setOTP(e.target.value)} placeholder="Enter OTP Password" />
-            </div>
-            <button type="submit" className={styles.button} onClick={handleRegister}>
-                Verify OTP
-            </button>
             <Link to="/login" className={styles.alignRight}>Login</Link>
         </div>);
 }
