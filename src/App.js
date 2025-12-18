@@ -35,7 +35,7 @@ function App() {
         return () => clearInterval(id);
     },[])
   return (
-      <BrowserRouter>
+      <BrowserRouter basename="/ecomm-frontend">
           <ToastContainer
               position="top-right"
               autoClose={3000}
