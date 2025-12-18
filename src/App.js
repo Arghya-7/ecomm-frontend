@@ -21,7 +21,19 @@ import UserProfile from "./pages/UserProfile/UserProfile.module";
 import OrderDetails from "./pages/OrderDetails/OrderDetails.module";
 import OrderPage from "./pages/Order/OrderPage";
 import PayButton from "./components/Paybutton/PayButton";
+import {useEffect, useState} from "react";
 function App() {
+    const [authenticated, setAuthenticated] = useState(false);
+    useEffect(() => {
+        const id = setInterval(()=>{
+            if(localStorage.getItem("token")){
+                setAuthenticated(true);
+            } else {
+                setAuthenticated(false);
+            }
+        }, 1000);
+        return () => clearInterval(id);
+    },[])
   return (
       <BrowserRouter>
           <ToastContainer
@@ -32,7 +44,7 @@ function App() {
               closeOnClick
               pauseOnHover
           />
-          <PayButton />
+          {authenticated && <PayButton/>}
           <Routes>
               <Route path="/" element={<PrivateRoute><DashBoard /></PrivateRoute>} />
               <Route path="/home" element={<PrivateRoute><Home /></PrivateRoute>} />
