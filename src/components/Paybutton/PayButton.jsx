@@ -4,6 +4,7 @@ import {useNavigate} from "react-router-dom";
 import api from "../../config/AuthHeader";
 export default function PayButton(props) {
     const [state, setState] = useState(false);
+    const [lastCallDone, setLastCallDone] = useState(true);
     useEffect(() => {
         const fetchData = async () => {
             const response = await api.get(process.env.REACT_APP_BACKEND_URL + "/cart");
@@ -12,14 +13,14 @@ export default function PayButton(props) {
         const id = setInterval(() => {
             const cart = fetchData().then((response) => {
                 console.log(response);
-                if(response && response.orderItemList.length > 0) {
+                if(response && response.orderItemList && response.orderItemList.length > 0) {
                     console.log(response);
                     setState(true);
                 } else {
                     setState(false);
                 }
             });
-        },1000);
+        },4000);
 
         return () => {clearInterval(id);};
     },[state])
