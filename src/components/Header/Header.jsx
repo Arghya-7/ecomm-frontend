@@ -18,7 +18,7 @@ function Header() {
                 <Link onClick={logout} to={"/login"}>Logout</Link>
                 <Link to="/cart" className={styles.linkItem}>Cart</Link>
                 <Link to="/home" className={styles.linksItem}>Home</Link>
-                <Link to="/profile" className={styles.linksItem}>View Profile</Link>
+                <Link to="/profile" className={styles.linksItem}>Profile</Link>
                 <Link to="/order" className={styles.linksItem}>Orders</Link>
             </ul>
 

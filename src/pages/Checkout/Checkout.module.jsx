@@ -4,12 +4,19 @@ import {useEffect, useRef, useState} from "react";
 import styles from "./Checkout.module.css";
 import api from "../../config/AuthHeader";
 import {useNavigate} from "react-router-dom";
+import PurchaseItemPopUp from "../../components/PurchaseItemsPopUp/PopUp";
+import Cart from "../Cart/Cart";
 
 export default function Checkout(){
     const navigate = useNavigate();
     const [isCashOnDelivery, setIsCashOnDelivery] = useState(false);
     const loaded = useRef(false);
     const [cart, setCart] = useState(null);
+    const [openOrders, setOpenOrders] = useState(false);
+
+    const handleOrderDisplay = () => {
+        setOpenOrders(true);
+    }
 
     useEffect(() => {
         if (!loaded.current) {
@@ -61,6 +68,8 @@ export default function Checkout(){
                     {cart && cart.user && <p className={styles.orderDetails}>User Contact : {cart.user.phone ? cart.user.phone : "NIL"}</p>}
                     <button className={styles.paymentColor} onClick={handlePayment} > {isCashOnDelivery ? "Order now" : "Pay now"}</button>
                     <button onClick={e => navigate("/profile")}>Update Details</button>
+                    <button onClick={handleOrderDisplay}>View Order</button>
+                    <PurchaseItemPopUp open={openOrders} onClose={() => setOpenOrders(!openOrders)} headers="Order Details" body={<Cart />}/>
                 </div>
                 <div className={styles.checkoutLeft}>
                     <h2>Payment Method</h2>
