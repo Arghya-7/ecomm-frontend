@@ -14,7 +14,7 @@ export default function CashfreePaymentModule({data}){
         const cashfree = new window.Cashfree({ mode: "sandbox" });
         cashfree.checkout({
             paymentSessionId: data.payment_session_id,
-            returnUrl: `http://localhost:3000/payment/validate?order_id=${data.order_id}`
+            returnUrl: `${process.env.REACT_APP_URL}/payment/validate?order_id=${data.order_id}`
         });
     };
 

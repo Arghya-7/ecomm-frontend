@@ -11,7 +11,6 @@ export default function Registration() {
     const [address, setAddress] = useState("");
     const [status, setStatus] = useState("");
     const navigate = useNavigate();
-    const [isPasswordSame, setIsPasswordSame] = useState(true);
     useEffect(() => {
         if(localStorage.getItem("token")) {
             navigate("/");
