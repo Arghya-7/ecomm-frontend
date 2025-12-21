@@ -1,5 +1,5 @@
 import {useEffect, useRef, useState} from "react";
-import api from "../../config/AuthHeader"
+import api from "../../config/ApiHeader"
 import styles from "./OtpTimer.module.css";
 function OtpTimer({timeout, email}) {
     const [timeLeft, setTimeLeft] = useState(timeout); // 2 minutes

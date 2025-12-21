@@ -62,7 +62,7 @@ function App() {
               <Route path="/logout" element={<Logout />} />
               <Route path="/profile" element={<UserProfile />} />
               <Route path="/register" element={<Registration />} />
-              <Route path="/register/verify" element={<OTPVerification />} />
+              <Route path="/register/verify" element={ <OTPVerification />} />
               <Route path="*" element={<Error />} />
           </Routes>
       </BrowserRouter>

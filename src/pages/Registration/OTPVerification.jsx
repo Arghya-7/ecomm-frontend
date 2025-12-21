@@ -1,5 +1,5 @@
 import {Link, useLocation} from "react-router-dom";
-import api from "../../config/AuthHeader"
+import api from "../../config/ApiHeader"
 import styles from "./Registration.module.css";
 import OtpTimer from "../../components/OtpTimer/OtpTimer";
 import {useEffect, useRef, useState} from "react";
@@ -12,17 +12,17 @@ export default function OTPVerification() {
     const loaded = useRef(true);
     console.log(user);
     useEffect(() => {
-        if(loaded.current) {
+        if(loaded.current && user.email) {
             const sendOTPRequest = async () => {
                 const response = await api.post(process.env.REACT_APP_BACKEND_URL+"/auth/registration", {
                     email: user.email,
                 })
                 console.log(response)
             }
-            sendOTPRequest();
+            sendOTPRequest().then(res => alert("OTP sent successfully"));
             loaded.current = false;
         }
-    })
+    }, [])
     const handleRegister = async (e) => {
         e.preventDefault();
         const response = await api.post(process.env.REACT_APP_BACKEND_URL+"/auth/registration/verify",{
